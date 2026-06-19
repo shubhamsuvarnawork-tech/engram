@@ -1,0 +1,20 @@
+# Reference manifests. In production prefer managed Postgres (RDS/Cloud SQL) and
+# Neo4j Aura; these StatefulSets are for self-hosted / dev clusters.
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: neo4j
+  namespace: company-brain
+spec:
+  serviceName: neo4j
+  replicas: 1
+  selector: { matchLabels: { app: neo4j } }
+  template:
+    metadata: { labels: { app: neo4j } }
+    spec:
+      containers:
+        - name: neo4j
+          image: neo4j:5
+          ports: [{ containerPort: 7687 }, { containerPort: 7474 }]
+          env:
+            - { name: NEO4J_AUTH, valueFrom: { secretKeyRef: { name: backend-secrets, key: NEO4J_AUTH } } }
