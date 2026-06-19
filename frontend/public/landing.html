@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Engram — the company brain for AI agents</title>
+<meta name="description" content="Engram turns how your company makes decisions into executable, provenance-linked skills your AI agents run safely — with human-in-the-loop. The company brain for AI agents." />
+<link rel="canonical" href="https://engram.ai/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#06070f" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g fill='none' stroke='%236366f1' stroke-width='4' stroke-linecap='round'><path d='M18 32L33 19'/><path d='M18 32L33 45'/><path d='M33 19L48 32'/><path d='M33 45L48 32'/></g><circle cx='18' cy='32' r='6' fill='%236366f1'/><circle cx='48' cy='32' r='6' fill='%2322d3ee'/></svg>" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Engram" />
+<meta property="og:title" content="Engram — the company brain for AI agents" />
+<meta property="og:description" content="Engram turns how your company makes decisions into executable skills your AI agents run safely — with human-in-the-loop and full provenance." />
+<meta property="og:url" content="https://engram.ai/" />
+<meta property="og:image" content="https://engram.ai/og-image-1200x630.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Engram — organizational memory, made executable" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Engram — the company brain for AI agents" />
+<meta name="twitter:description" content="Organizational memory, made executable. Decisions compiled into skills your AI agents run safely." />
+<meta name="twitter:image" content="https://engram.ai/og-image-1200x630.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{ --bg:#06070f; --ink:#f4f6ff; --mut:#c2c8e8; --dim:#8088ad;
+  --indigo:#6366f1; --violet:#7c3aed; --cyan:#22d3ee;
+  --glass:rgba(255,255,255,.045); --glass-brd:rgba(255,255,255,.10); --maxw:1240px; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{background:var(--bg); color:var(--ink); font-family:"Inter",system-ui,sans-serif; font-weight:400; overflow-x:hidden; line-height:1.6}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"JetBrains Mono",monospace}
+#bg{position:fixed; inset:0; width:100%; height:100%; z-index:0; display:block; pointer-events:none}
+.grid-overlay{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.5;
+  background-image:linear-gradient(rgba(99,102,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.05) 1px,transparent 1px);
+  background-size:64px 64px; -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 35%,#000,transparent 80%); mask-image:radial-gradient(ellipse 80% 70% at 50% 35%,#000,transparent 80%)}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(125% 100% at 50% 38%,transparent 0%,transparent 34%,rgba(4,5,12,.42) 68%,rgba(2,3,8,.66) 100%)}
+.no-webgl #bg{background:radial-gradient(60% 50% at 70% 20%,rgba(124,58,237,.35),transparent 60%),radial-gradient(50% 50% at 20% 70%,rgba(34,211,238,.22),transparent 60%),var(--bg)}
+.content{position:relative; z-index:2}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,64px); width:100%}
+nav{position:fixed; top:0; left:0; right:0; z-index:30; padding:16px 0; transition:background .4s,backdrop-filter .4s,border-color .4s}
+nav.solid{background:rgba(8,10,20,.55); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-brd)}
+.nav-in{display:flex; align-items:center; gap:18px}
+.brand{display:flex; align-items:center; gap:10px; font-family:"Sora"; font-weight:600; font-size:18px; letter-spacing:-.02em}
+.nav-links{margin-left:auto; display:flex; gap:30px; font-size:13px; color:var(--mut)}
+.nav-links a:hover{color:var(--ink)}
+.btn{font-family:"Sora"; font-weight:500; font-size:13px; padding:10px 18px; border-radius:999px; cursor:pointer;
+  border:1px solid var(--glass-brd); background:var(--glass); color:var(--ink); backdrop-filter:blur(8px);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s; display:inline-flex; align-items:center; gap:8px}
+.btn:hover{transform:translateY(-2px); border-color:rgba(99,102,241,.6); box-shadow:0 0 0 1px rgba(99,102,241,.3),0 12px 40px -12px rgba(99,102,241,.7)}
+.btn.primary{background:var(--indigo); border-color:transparent}
+.btn.primary:hover{box-shadow:0 14px 50px -10px rgba(124,58,237,.8)}
+@media(max-width:760px){.nav-links{display:none}}
+section{position:relative; min-height:100vh; display:flex; align-items:center; padding:120px 0}
+.eyebrow{font-family:"JetBrains Mono"; font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--cyan); display:flex; align-items:center; gap:12px; margin-bottom:26px}
+.eyebrow::before{content:""; width:30px; height:1px; background:var(--cyan); opacity:.7}
+h1,h2,h3{font-family:"Sora"; color:#ffffff; font-weight:700; letter-spacing:-.03em; line-height:1.0; text-shadow:0 1px 2px rgba(6,7,15,.92), 0 4px 30px rgba(6,7,15,.9)}
+.display{font-size:clamp(2.6rem,8.2vw,7.4rem)}
+.h-lg{font-size:clamp(2.1rem,5.6vw,4.4rem); line-height:1.04}
+.lead{font-size:clamp(1.05rem,1.6vw,1.4rem); color:#dfe4f8; max-width:54ch; margin-top:28px; font-weight:400; text-shadow:0 1px 2px rgba(6,7,15,.95), 0 2px 22px rgba(6,7,15,.9)}
+.tiny{font-size:13px; color:var(--dim)}
+.grad{color:#ffffff}
+.word{display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.16em}
+.word > span{display:inline-block; will-change:transform}
+#hero{padding-top:160px}
+.hero-cta{display:flex; gap:16px; margin-top:42px; flex-wrap:wrap}
+.scroll-hint{position:absolute; bottom:36px; left:50%; transform:translateX(-50%); font-family:"JetBrains Mono"; font-size:11px; letter-spacing:.3em; color:var(--dim); text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:10px}
+.scroll-hint .bar{width:1px; height:46px; background:var(--cyan); opacity:.7; animation:drop 2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}40%{transform:scaleY(1);transform-origin:top}41%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.glass{background:var(--glass); border:1px solid var(--glass-brd); border-radius:20px; backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 30px 80px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06)}
+.split{display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr; gap:40px}}
+.skill{padding:26px; border-radius:20px}
+.skill .hd{display:flex; align-items:center; gap:10px; margin-bottom:18px}
+.skill .name{font-family:"JetBrains Mono"; font-size:14px}
+.tag{font-family:"JetBrains Mono"; font-size:10px; padding:3px 9px; border-radius:999px}
+.tag.live{background:rgba(34,211,238,.14); color:#7defff}
+.tag.appr{background:rgba(245,158,11,.16); color:#fcd34d}
+.step{display:flex; align-items:center; gap:12px; padding:9px 0; border-top:1px solid rgba(255,255,255,.06); font-size:13px; color:var(--mut)}
+.step:first-of-type{border-top:none}
+.step .ic{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none; background:rgba(99,102,241,.16); color:#aab0ff; font-family:"JetBrains Mono"}
+.step.act .ic{background:rgba(34,211,238,.16); color:#8fefff}
+.bar-c{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;flex:1}
+.bar-c>i{display:block;height:100%;background:var(--cyan)}
+.appcard{padding:24px; border-radius:18px; max-width:420px}
+.appcard .sig{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0}
+.sigbox{background:rgba(255,255,255,.04); border-radius:12px; padding:11px 13px}
+.sigbox .k{font-family:"JetBrains Mono"; font-size:10px; color:var(--dim); letter-spacing:.1em; text-transform:uppercase}
+.sigbox .v{font-size:16px; font-family:"Sora"; margin-top:3px}
+.metrics{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; width:100%}
+@media(max-width:900px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metric{padding:30px 26px; border-radius:18px}
+.metric .num{font-family:"Sora"; font-weight:700; font-size:clamp(2.4rem,4.6vw,3.6rem); letter-spacing:-.03em; color:var(--cyan)}
+.metric .lab{font-size:13px; color:var(--mut); margin-top:8px}
+.pipe{display:flex; gap:0; margin-top:46px; flex-wrap:wrap}
+.pnode{flex:1; min-width:150px; padding:22px 20px; border-radius:16px; position:relative}
+.pnode .n{font-family:"JetBrains Mono"; font-size:11px; color:var(--cyan); letter-spacing:.2em}
+.pnode h3{font-size:20px; margin:10px 0 6px}
+.pnode p{font-size:13.5px; color:var(--mut)}
+.pnode + .pnode{margin-left:14px}
+@media(max-width:760px){.pnode+.pnode{margin-left:0;margin-top:14px}}
+.rail{position:fixed; right:30px; top:50%; transform:translateY(-50%); z-index:25; display:flex; flex-direction:column; gap:14px}
+.rail b{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.18); transition:all .4s; cursor:pointer; display:block}
+.rail b.on{background:var(--cyan); box-shadow:0 0 14px var(--cyan); transform:scale(1.3)}
+@media(max-width:760px){.rail{display:none}}
+.progress{position:fixed; top:0; left:0; height:2px; z-index:40; width:100%; transform:scaleX(0); transform-origin:left; background:linear-gradient(90deg,var(--indigo),var(--cyan))}
+.cursor{position:fixed; top:0; left:0; width:26px; height:26px; border-radius:50%; z-index:60; pointer-events:none; border:1px solid rgba(99,102,241,.6); mix-blend-mode:screen; transform:translate(-50%,-50%); transition:width .25s,height .25s,background .25s}
+.cursor.big{width:60px;height:60px;background:rgba(99,102,241,.12)}
+@media(pointer:coarse){.cursor{display:none}}
+#loader{position:fixed; inset:0; z-index:100; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; transition:opacity .8s ease}
+#loader.gone{opacity:0; pointer-events:none}
+#loader .lab{font-family:"JetBrains Mono"; font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--dim)}
+#loader .lbar{width:200px; height:2px; background:rgba(255,255,255,.1); overflow:hidden; border-radius:9px}
+#loader .lbar i{display:block; height:100%; width:40%; background:linear-gradient(90deg,var(--indigo),var(--cyan)); animation:ld 1.1s infinite}
+@keyframes ld{0%{transform:translateX(-120%)}100%{transform:translateX(360%)}}
+footer{position:relative; z-index:2; padding:80px 0 50px; border-top:1px solid var(--glass-brd); margin-top:40px}
+.foot-in{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px}
+.foot-links{display:flex; gap:26px; font-size:13px; color:var(--mut)}
+@media(prefers-reduced-motion:reduce){.bar,#loader .lbar i{animation:none}}
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://engram.ai/#org","name":"Engram","url":"https://engram.ai/","logo":"https://engram.ai/og-image-1200x630.png","slogan":"Organizational memory, made executable.","description":"The company brain for AI agents. Engram compiles a company's decisions into executable, provenance-linked skills that agents run safely with human-in-the-loop."},
+{"@type":"WebSite","@id":"https://engram.ai/#website","url":"https://engram.ai/","name":"Engram","publisher":{"@id":"https://engram.ai/#org"}},
+{"@type":"SoftwareApplication","name":"Engram","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Engram learns how your company makes decisions and compiles them into executable, provenance-linked skills your AI agents run safely, with human-in-the-loop.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+]}
+</script>
+</head>
+<body>
+<div id="loader"><div class="lab">Initializing the company brain</div><div class="lbar"><i></i></div></div>
+<div class="cursor"></div>
+<div class="progress"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="grid-overlay"></div>
+<div class="vignette"></div>
+<div class="rail" aria-hidden="true">
+  <b data-go="#hero" class="on"></b><b data-go="#problem"></b><b data-go="#system"></b>
+  <b data-go="#moat"></b><b data-go="#runtime"></b><b data-go="#loop"></b><b data-go="#metrics"></b><b data-go="#cta"></b>
+</div>
+<nav><div class="wrap nav-in">
+  <a class="brand" href="#hero">
+    <svg viewBox="0 0 64 64" width="26" height="26" aria-hidden="true">
+      <g fill="none" stroke="#6366f1" stroke-width="3.4" stroke-linecap="round">
+        <path d="M18 32 L33 19"/><path d="M18 32 L33 45"/><path d="M33 19 L48 32"/><path d="M33 45 L48 32"/></g>
+      <circle cx="18" cy="32" r="5.6" fill="#6366f1"/><circle cx="33" cy="19" r="3.8" fill="#7c3aed"/>
+      <circle cx="33" cy="45" r="3.8" fill="#7c3aed"/><circle cx="48" cy="32" r="5.6" fill="#22d3ee"/></svg>
+    Engram
+  </a>
+  <div class="nav-links"><a href="#system">System</a><a href="#moat">Skills</a><a href="#runtime">Runtime</a><a href="#metrics">Results</a></div>
+  <a class="btn primary" href="/app">Open console</a>
+</div></nav>
+<div class="content" role="main">
+  <section id="hero"><div class="wrap">
+    <div class="eyebrow">The company brain</div>
+    <h1 class="display" data-split>Organizational memory, made executable.</h1>
+    <p class="lead" data-fade>Engram learns how your company actually makes decisions — and compiles that knowledge into skills your AI agents can run, safely, with a human in the loop.</p>
+    <div class="hero-cta" data-fade><a class="btn primary" href="/app">Open console</a><a class="btn" href="#system">See the system <span class="mono">-&gt;</span></a></div>
+  </div><div class="scroll-hint"><span>scroll</span><span class="bar"></span></div></section>
+  <section id="problem"><div class="wrap">
+    <div class="eyebrow">The problem</div>
+    <h2 class="h-lg" data-split>Companies don't run on documents. They run on decisions.</h2>
+    <p class="lead" data-fade>Most of those decisions are undocumented — living in senior people's heads and buried Slack threads, and walking out the door the day they leave. Your AI agents inherit the model's intelligence, but none of your company's.</p>
+  </div></section>
+  <section id="system"><div class="wrap">
+    <div class="eyebrow">The system</div>
+    <h2 class="h-lg" data-split>A living model of how you operate.</h2>
+    <p class="lead" data-fade>Engram ingests your policies, tickets, and conversations and structures them into a knowledge-and-decision graph — every fact and rule scored for confidence and freshness, every edge traceable to its source.</p>
+    <div class="pipe">
+      <div class="pnode glass" data-fade><div class="n">01</div><h3>Ingest</h3><p>Slack, tickets, docs, runbooks — turned into typed knowledge.</p></div>
+      <div class="pnode glass" data-fade><div class="n">02</div><h3>Decide</h3><p>Decisions, exceptions, and rules become first-class objects.</p></div>
+      <div class="pnode glass" data-fade><div class="n">03</div><h3>Compile</h3><p>The graph is compiled into executable, scored skills.</p></div>
+      <div class="pnode glass" data-fade><div class="n">04</div><h3>Act</h3><p>Agents run the skills — autonomous where it's safe.</p></div>
+    </div>
+  </div></section>
+  <section id="moat"><div class="wrap split">
+    <div>
+      <div class="eyebrow">The moat</div>
+      <h2 class="h-lg" data-split>Decisions, compiled into action.</h2>
+      <p class="lead" data-fade>Search shows you the policy. Engram compiles the decision into a deterministic, provenance-linked workflow an agent can actually run — inputs discovered, steps ordered, guardrails distilled, confidence scored.</p>
+    </div>
+    <div class="skill glass" data-card>
+      <div class="hd"><span class="name">refund_customer</span><span class="tag live">live</span><span class="tag" style="background:rgba(255,255,255,.06);color:var(--mut)">v3</span></div>
+      <div class="step"><span class="ic">F</span>Fetch subscription, LTV, risk flags, amount</div>
+      <div class="step"><span class="ic">D</span>Evaluate refund decision</div>
+      <div class="step act"><span class="ic">A</span>approve_refund</div>
+      <div class="step act"><span class="ic">A</span>escalate_to_finance <span class="tag appr">approval</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:18px"><span class="mono" style="font-size:11px;color:var(--dim)">confidence</span><span class="bar-c"><i style="width:81%"></i></span><span class="mono" style="font-size:12px">0.81</span></div>
+    </div>
+  </div></section>
+  <section id="runtime"><div class="wrap split">
+    <div class="appcard glass" data-card>
+      <div style="display:flex;align-items:center;gap:10px"><span class="tag appr">guard tripped</span><span class="mono" style="font-size:12px">refund_customer</span></div>
+      <div style="font-size:17px;font-family:'Sora';margin:14px 0 2px">Approve a $8,000 refund — BigSpend Co.?</div>
+      <p class="tiny">Qualifies for auto-approval, but the amount crosses the high-value guard.</p>
+      <div class="sig">
+        <div class="sigbox"><div class="k">tenure</div><div class="v">30 mo</div></div>
+        <div class="sigbox"><div class="k">ltv</div><div class="v">$40,000</div></div>
+        <div class="sigbox"><div class="k">risk flags</div><div class="v" style="color:#7defff">none</div></div>
+        <div class="sigbox"><div class="k">amount</div><div class="v" style="color:#fcd34d">$8,000</div></div>
+      </div>
+      <div style="display:flex;gap:10px"><span class="btn primary" style="flex:1;justify-content:center">Approve</span><span class="btn" style="flex:1;justify-content:center">Override</span></div>
+    </div>
+    <div>
+      <div class="eyebrow">Execution</div>
+      <h2 class="h-lg" data-split>Autonomous where it's safe. Human where it counts.</h2>
+      <p class="lead" data-fade>Every action is gated by confidence and guardrails. The agent resolves the obvious cases instantly and routes the rest to a human with the full context to decide in seconds — never a black box.</p>
+    </div>
+  </div></section>
+  <section id="loop"><div class="wrap">
+    <div class="eyebrow">The loop</div>
+    <h2 class="h-lg" data-split>Every correction makes it sharper.</h2>
+    <p class="lead" data-fade>When a human overrides the agent, Engram captures it — re-weighting the decision and proposing an update to the brain for review. The system doesn't just store your knowledge; it compounds it. This is the moat that widens with every use.</p>
+  </div></section>
+  <section id="metrics"><div class="wrap">
+    <div class="eyebrow">In production</div>
+    <h2 class="h-lg" data-split>Trust you can measure.</h2>
+    <div class="metrics" style="margin-top:48px">
+      <div class="metric glass" data-card><div class="num" data-to="73" data-suf="%">0%</div><div class="lab">decisions auto-resolved</div></div>
+      <div class="metric glass" data-card><div class="num" data-to="0.81" data-dec="2">0</div><div class="lab">avg skill confidence</div></div>
+      <div class="metric glass" data-card><div class="num" data-to="1284" data-sep="1">0</div><div class="lab">knowledge nodes mapped</div></div>
+      <div class="metric glass" data-card><div class="num" data-to="5" data-suf="x">0</div><div class="lab">faster than re-onboarding</div></div>
+    </div>
+  </div></section>
+  <section id="cta"><div class="wrap" style="text-align:center">
+    <div class="eyebrow" style="justify-content:center">Get started</div>
+    <h2 class="display grad" data-split style="margin:0 auto">Give your company a brain.</h2>
+    <p class="lead" data-fade style="margin:28px auto 0">Turn the way you already make decisions into intelligence your team and your agents can run — and that never leaves when people do.</p>
+    <div class="hero-cta" data-fade style="justify-content:center"><a class="btn primary" href="/app" style="padding:14px 28px;font-size:15px">Open console</a><a class="btn" href="#" style="padding:14px 28px;font-size:15px">Read the PRD</a></div>
+  </div></section>
+</div>
+<footer><div class="wrap foot-in">
+  <span class="brand"><svg viewBox="0 0 64 64" width="22" height="22" aria-hidden="true"><g fill="none" stroke="#6366f1" stroke-width="3.4" stroke-linecap="round"><path d="M18 32 L33 19"/><path d="M18 32 L33 45"/><path d="M33 19 L48 32"/><path d="M33 45 L48 32"/></g><circle cx="18" cy="32" r="5.6" fill="#6366f1"/><circle cx="48" cy="32" r="5.6" fill="#22d3ee"/></svg> Engram</span>
+  <div class="foot-links"><a href="#system">System</a><a href="#moat">Skills</a><a href="#runtime">Runtime</a><a href="#metrics">Results</a></div>
+  <span class="tiny">(c) 2026 Engram · organizational memory, made executable</span>
+</div></footer>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const gsap = window.gsap, ScrollTrigger = window.ScrollTrigger;
+gsap.registerPlugin(ScrollTrigger);
+let lenis = null;
+if (!reduce && window.Lenis) {
+  lenis = new window.Lenis({ lerp: 0.09, wheelMultiplier: 1, smoothWheel: true });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+}
+const goTo = (sel) => { const el = document.querySelector(sel); if (!el) return; lenis ? lenis.scrollTo(el, { offset: 0 }) : el.scrollIntoView({ behavior: 'smooth' }); };
+document.querySelectorAll('a[href^="#"], .rail b[data-go]').forEach((el) => {
+  el.addEventListener('click', (e) => { const t = el.getAttribute('href') || el.dataset.go; if (t && t.startsWith('#') && t.length > 1) { e.preventDefault(); goTo(t); } });
+});
+const canvas = document.getElementById('bg');
+const state = { camZ: 19, camY: 0, rotY: 0, bloom: 1.0, core: 1 };
+let renderer, composer, scene, camera, graph, particles, core, bloomPass, ok = true;
+let px = 0, py = 0;
+try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' }); }
+catch (e) { ok = false; document.body.classList.add('no-webgl'); }
+function dotTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d'); const r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(.25, 'rgba(255,255,255,.9)'); r.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = r; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c);
+}
+function initScene() {
+  const w = innerWidth, h = innerHeight;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(w, h);
+  scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0x06070f, 0.028);
+  camera = new THREE.PerspectiveCamera(55, w / h, 0.1, 140); camera.position.set(0, 0, state.camZ);
+  graph = new THREE.Group(); scene.add(graph);
+  const tex = dotTexture();
+  const palette = [new THREE.Color(0x6366f1), new THREE.Color(0x7c3aed), new THREE.Color(0x22d3ee)];
+  const N = 150, nodes = [], pos = [], col = [];
+  for (let i = 0; i < N; i++) {
+    const u = Math.random(), v = Math.random();
+    const th = u * Math.PI * 2, ph = Math.acos(2 * v - 1);
+    const rad = 4.2 + Math.random() * 3.6;
+    const x = rad * Math.sin(ph) * Math.cos(th) * 1.35, y = rad * Math.sin(ph) * Math.sin(th) * 0.82, z = rad * Math.cos(ph);
+    nodes.push(new THREE.Vector3(x, y, z)); pos.push(x, y, z);
+    const c = palette[i % 3]; col.push(c.r, c.g, c.b);
+  }
+  const ng = new THREE.BufferGeometry();
+  ng.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  ng.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+  graph.add(new THREE.Points(ng, new THREE.PointsMaterial({ size: 0.44, map: tex, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true })));
+  const ep = [], ec = []; const c1 = new THREE.Color(0x6366f1), c2 = new THREE.Color(0x22d3ee);
+  for (let i = 0; i < N; i++) {
+    let deg = 0;
+    for (let j = i + 1; j < N && deg < 3; j++) {
+      if (nodes[i].distanceTo(nodes[j]) < 2.7) { deg++; ep.push(nodes[i].x, nodes[i].y, nodes[i].z, nodes[j].x, nodes[j].y, nodes[j].z); ec.push(c1.r, c1.g, c1.b, c2.r, c2.g, c2.b); }
+    }
+  }
+  const eg = new THREE.BufferGeometry();
+  eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3));
+  eg.setAttribute('color', new THREE.Float32BufferAttribute(ec, 3));
+  graph.add(new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending, depthWrite: false })));
+  core = new THREE.Mesh(new THREE.IcosahedronGeometry(2.3, 1), new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending }));
+  graph.add(core);
+  const P = 1100, pp = [];
+  for (let i = 0; i < P; i++) { const r = 18 + Math.random() * 40, t = Math.random() * Math.PI * 2, p = Math.acos(2 * Math.random() - 1); pp.push(r * Math.sin(p) * Math.cos(t), r * Math.sin(p) * Math.sin(t), r * Math.cos(p)); }
+  const pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.Float32BufferAttribute(pp, 3));
+  particles = new THREE.Points(pg, new THREE.PointsMaterial({ size: 0.085, color: 0x8b93d8, transparent: true, opacity: 0.4, depthWrite: false, blending: THREE.AdditiveBlending }));
+  scene.add(particles);
+  composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+  bloomPass = new UnrealBloomPass(new THREE.Vector2(w, h), state.bloom, 0.55, 0.45);
+  composer.addPass(bloomPass); composer.addPass(new OutputPass());
+  addEventListener('resize', onResize);
+  addEventListener('pointermove', (e) => { px = (e.clientX / innerWidth - 0.5); py = (e.clientY / innerHeight - 0.5); });
+}
+function onResize() { const w = innerWidth, h = innerHeight; camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.setSize(w, h); composer.setSize(w, h); }
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+  graph.rotation.y = state.rotY + t * 0.018; graph.rotation.x = Math.sin(t * 0.1) * 0.05;
+  core.rotation.x = t * 0.12; core.rotation.y = -t * 0.16; core.scale.setScalar(state.core * (1 + Math.sin(t * 1.4) * 0.03));
+  particles.rotation.y = t * 0.008;
+  camera.position.x += (px * 2.4 - camera.position.x) * 0.045;
+  camera.position.y += ((state.camY - py * 1.6) - camera.position.y) * 0.045;
+  camera.position.z += (state.camZ - camera.position.z) * 0.06;
+  bloomPass.strength += (state.bloom - bloomPass.strength) * 0.05;
+  camera.lookAt(0, 0, 0); composer.render();
+}
+if (ok) { initScene(); animate(); buildCameraTimeline(); }
+function buildCameraTimeline() {
+  const tl = gsap.timeline({ scrollTrigger: { trigger: '.content', start: 'top top', end: 'bottom bottom', scrub: 1.1 } });
+  tl.to(state, { camZ: 13, camY: 1.1, rotY: 0.7, bloom: 1.05, core: 1.1, ease: 'sine.inOut' })
+    .to(state, { camZ: 9.5, camY: -1.2, rotY: 1.5, bloom: 0.95, ease: 'sine.inOut' })
+    .to(state, { camZ: 8, camY: 0.6, rotY: 2.2, bloom: 1.1, core: 1.18, ease: 'sine.inOut' })
+    .to(state, { camZ: 12, camY: -0.8, rotY: 3.0, bloom: 0.95, ease: 'sine.inOut' })
+    .to(state, { camZ: 7.5, camY: 0, rotY: 3.8, bloom: 1.1, core: 1.2, ease: 'sine.inOut' })
+    .to(state, { camZ: 15, camY: 1, rotY: 4.4, bloom: 1.0, core: 1, ease: 'sine.inOut' })
+    .to(state, { camZ: 21, camY: 0, rotY: 5.0, bloom: 0.9, ease: 'sine.inOut' });
+}
+document.querySelectorAll('[data-split]').forEach((el) => {
+  const words = el.textContent.trim().split(/\s+/);
+  el.innerHTML = words.map((w) => '<span class="word"><span>' + w + '</span></span>').join(' ');
+  const inner = el.querySelectorAll('.word > span');
+  if (reduce) return;
+  gsap.set(inner, { yPercent: 140 });
+  gsap.to(inner, { yPercent: 0, duration: 1.0, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: el, start: 'top 82%' } });
+});
+if (!reduce) {
+  document.querySelectorAll('[data-fade]').forEach((el) => { gsap.from(el, { y: 34, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } }); });
+  document.querySelectorAll('[data-card]').forEach((el) => { gsap.from(el, { y: 60, opacity: 0, rotateX: 8, scale: 0.96, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } }); });
+}
+document.querySelectorAll('.num[data-to]').forEach((el) => {
+  const to = parseFloat(el.dataset.to), dec = +(el.dataset.dec || 0), suf = el.dataset.suf || '', sep = el.dataset.sep;
+  const obj = { v: 0 };
+  gsap.to(obj, { v: to, duration: 1.6, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%' },
+    onUpdate() { let s = dec ? obj.v.toFixed(dec) : Math.round(obj.v).toString(); if (sep) s = (+s).toLocaleString('en-US'); el.textContent = s + suf; } });
+});
+const navEl = document.querySelector('nav');
+ScrollTrigger.create({ start: 'top -60', end: 99999, onUpdate: (s) => navEl.classList.toggle('solid', s.scroll() > 60) });
+gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '.content', start: 'top top', end: 'bottom bottom', scrub: true } });
+const dots = document.querySelectorAll('.rail b');
+document.querySelectorAll('section').forEach((sec, i) => {
+  ScrollTrigger.create({ trigger: sec, start: 'top 55%', end: 'bottom 55%', onToggle: (s) => { if (s.isActive) { dots.forEach((d) => d.classList.remove('on')); if (dots[i]) dots[i].classList.add('on'); } } });
+});
+const cur = document.querySelector('.cursor');
+if (cur && !reduce) {
+  const xT = gsap.quickTo(cur, 'x', { duration: 0.35, ease: 'power3' }), yT = gsap.quickTo(cur, 'y', { duration: 0.35, ease: 'power3' });
+  addEventListener('pointermove', (e) => { xT(e.clientX); yT(e.clientY); });
+  document.querySelectorAll('a,.btn,.rail b').forEach((el) => { el.addEventListener('pointerenter', () => cur.classList.add('big')); el.addEventListener('pointerleave', () => cur.classList.remove('big')); });
+}
+const hideLoader = () => { const l = document.getElementById('loader'); if (l) { l.classList.add('gone'); setTimeout(() => l.remove(), 900); } ScrollTrigger.refresh(); };
+addEventListener('load', () => setTimeout(hideLoader, 650));
+setTimeout(hideLoader, 3500);
+</script>
+</body>
+</html>

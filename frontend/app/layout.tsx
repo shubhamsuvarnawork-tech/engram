@@ -15,12 +15,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div className="min-h-screen">
           <header className="border-b bg-white">
             <div className="mx-auto flex max-w-5xl items-center gap-6 px-6 py-3">
-              <Link href="/" className="flex items-center gap-2 font-semibold">
+              <Link href="/app" className="flex items-center gap-2 font-semibold">
                 <EngramMark className="h-6 w-6" />
                 <span className="tracking-tight">Engram</span>
               </Link>
               <nav className="flex gap-4 text-sm text-slate-600">
-                <Link href="/" className="hover:text-slate-900">Dashboard</Link>
+                <Link href="/app" className="hover:text-slate-900">Dashboard</Link>
                 <Link href="/executions" className="hover:text-slate-900">Executions</Link>
               </nav>
             </div>
