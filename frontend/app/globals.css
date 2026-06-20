@@ -4,3 +4,10 @@
 
 :root { color-scheme: light; }
 body { @apply bg-slate-50 text-slate-900; }
+
+@keyframes egFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes egNode { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+@keyframes egEdge { to { stroke-dashoffset: 0; } }
+.animate-fade-up { animation: egFadeUp .5s cubic-bezier(.2,.8,.2,1) both; }
+.eg-node { animation: egNode 3s ease-in-out infinite; }
+.eg-edge { stroke-dasharray: 4 7; animation: egEdge 3.5s linear infinite; }
