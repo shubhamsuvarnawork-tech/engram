@@ -4,7 +4,7 @@
 
 :root { color-scheme: light; }
 body { @apply bg-slate-50 text-slate-900; font-family: 'Inter', system-ui, sans-serif; }
-h1, h2, h3, .font-display { font-family: 'Sora', system-ui, sans-serif; }
+h1, h2, h3, .font-display { font-family: 'Satoshi', system-ui, sans-serif; }
 code, pre, .font-jb { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
 @keyframes egFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }

@@ -210,7 +210,7 @@ export default function Dashboard() {
   const initialized = cid !== null;
 
   return (
-    <div className="relative -mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-[#06070f] px-5 py-7 text-slate-200 shadow-2xl shadow-black/50 sm:px-8">
+    <div className="relative -mt-8 -mb-8 mx-[calc(50%-50vw)] min-h-[calc(100vh-3.5rem)] overflow-hidden bg-[#06070f] px-5 py-8 text-slate-200 sm:px-10">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 -top-24 h-80 w-80 rounded-full bg-indigo-600/20 blur-[120px]" />
         <div className="absolute right-[-8%] top-10 h-80 w-80 rounded-full bg-violet-600/15 blur-[120px]" />
